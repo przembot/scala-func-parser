@@ -1,16 +1,17 @@
 package com.przembot.test
 
 import org.scalatest.FunSuite
-import com.przembot.Widget
+import com.przembot.Parser
+import com.przembot.ParserF._
 
-class WidgetTest extends FunSuite {
+class ParserTest extends FunSuite {
 
-  test("colour") {
-    assert("Blue" === new Widget().colour)
-  }
+  test("parse single chars") {
+    val parser = for (
+      c <- char('c')
+    ) yield c.toString()+"ala"
 
-  test("disposition") {
-    assert("Awesome" === new Widget().disposition)
+    assert(runParser(parser)("c") === Some("cala"))
   }
 
 }
